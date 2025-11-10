@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+
+    <h1>Formularios</h1>
+    <!-- Zona donde los usuarios rellenan sus datos -->
+     <!-- la url que va a recibir los datos 'action' -->
+      <!-- get: recibe datos post: enviar un dato o un formulario -->
+     <!-- <form action="http://httpbin.org/post" method="post"
+    enctype="application/x-www-form-urlencoded"> -->
+
+      <form action="http://httpbin.org/post" method="post"
+    enctype="multipart/form-data">
+        <!-- Campos a enviar al servidor -->
+         <!-- input:
+          text -> por defecto
+          password: para la contrasena
+          checkbox
+          radio
+          file
+          hidden
+
+          Atributos
+          id= el identificador unico dentro del documento
+          value = valor a ser enviado al servidor
+          name = nombre del campo para el servidor
+          readonly= no puede ser editado por el usuario
+          required
+          placeholder
+          number
+          search
+          time
+          phone, tel
+          url
+          color
+           -->
+         <input type="text" name="campo1" readonly value="1111">
+          <input type="password" name="campo2">
+          <input type="file" name="fichero">
+          <input type="checkbox" checked name="tyc" value="aceptado"> Acepta los terminos y condiciones
+          <input type="radio" name="tipousuario" value="0"> Usuario 1
+          <input type="radio" name="tipousuario" value="1"> Usuario 2
+          <input type="email" name="moralens" required placeholder="email">
+         <button type="submit">Enviar</button>
+
+     </form>
+    
+</body>
+</html>
