@@ -1,0 +1,127 @@
+ Introducción
+Objetivo de esta Guía
+Transformarte de usuario básico de Linux a profesional capaz de trabajar en entornos empresariales usando Ubuntu WSL como plataforma de aprendizaje.
+
+
+ FASE 1: Fundamentos Esenciales
+1. Dominio de la Terminal
+Comandos de Supervivencia:
+
+# Navegación y archivos
+pwd                     # Mostrar directorio actual
+ls -la                  # Listar archivos con detalles
+cd ~/documentos         # Cambiar directorio
+mkdir proyecto          # Crear directorio
+touch archivo.txt       # Crear archivo
+cp archivo.txt copia.txt # Copiar
+mv archivo.txt nuevo.txt # Mover/renombrar
+rm archivo.txt          # Eliminar
+
+# Visualización
+cat archivo.txt         # Mostrar contenido completo
+less archivo.txt        # Navegar contenido
+head -n 10 archivo.txt  # Primeras 10 líneas
+tail -f archivo.txt     # Seguir archivo en tiempo real
+
+
+2. Gestión de Paquetes
+
+
+# Sistema Ubuntu/Debian
+sudo apt update                    # Actualizar lista paquetes
+sudo apt upgrade                   # Actualizar sistema
+sudo apt install python3 git       # Instalar múltiples paquetes
+sudo apt remove nombre_paquete     # Desinstalar
+sudo apt autoremove                # Limpiar dependencias
+
+# Buscar paquetes
+apt search "python"
+apt show nombre_paquete
+
+
+6. Control de Versiones con Git
+
+# Configuración inicial
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+
+# Flujo de trabajo básico
+git init                          # Inicializar repositorio
+git clone https://github.com/usuario/repo.git
+git status                        # Ver estado
+git add .                         # Añadir todos los cambios
+git commit -m "Descripción del cambio"
+git push origin main              # Subir cambios
+
+# Ramas y colaboración
+git branch nueva-rama             # Crear rama
+git checkout nueva-rama           # Cambiar rama
+git merge nueva-rama              # Fusionar ramas
+git pull origin main              # Actualizar local
+
+
+ FASE 3: Preparación Empresarial
+7. Entornos de Desarrollo
+
+
+# Instalación de herramientas esenciales
+sudo apt install build-essential    # Compiladores C/C++
+sudo apt install python3-pip       # Python package manager
+sudo apt install nodejs npm        # Node.js y npm
+sudo apt install docker.io         # Contenedores Docker
+sudo apt install git               # Control de versiones
+
+# Entornos virtuales Python
+python3 -m venv mi-proyecto
+source mi-proyecto/bin/activate
+pip install -r requirements.txt
+
+# Gestión de versiones Node
+npm init -y                        # Inicializar proyecto
+npm install express                # Instalar dependencia
+
+
+Base de Datos:
+
+# MySQL
+sudo apt install mysql-server
+sudo mysql_secure_installation
+mysql -u root -p
+
+# PostgreSQL
+sudo apt install postgresql postgresql-contrib
+sudo -u postgres psql
+
+
+Proyecto 2: Automatización de Deploy
+
+#!/bin/bash
+# auto_deploy.sh
+
+PROJECT_DIR="/home/$USER/app"
+BACKUP_DIR="/home/$USER/backups"
+BRANCH="main"
+
+cd $PROJECT_DIR
+
+# Backup actual
+tar -czf "$BACKUP_DIR/backup_$(date +%Y%m%d_%H%M%S).tar.gz" .
+
+# Actualizar código
+git fetch origin
+git checkout $BRANCH
+git pull origin $BRANCH
+
+# Instalar dependencias
+npm install
+
+# Reiniciar servicio
+sudo systemctl restart mi-aplicacion
+
+# Verificar estado
+if sudo systemctl is-active --quiet mi-aplicacion; then
+    echo "Deployment exitoso: $(date)" >> /var/log/deploy.log
+else
+    echo "Error en deployment: $(date)" >> /var/log/deploy.log
+    # Revertir a backup si falla
+fi
